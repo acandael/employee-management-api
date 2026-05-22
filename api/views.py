@@ -40,6 +40,8 @@ from rest_framework import status, mixins, generics
 #         employee.delete()
 #         return Response({"message": "Employee deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 # Mixins
+
+# Generic Views
 class EmployeeView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -62,3 +64,13 @@ class EmployeeDetailView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mix
 
     def delete(self, request, pk):
         return self.destroy(request, pk)
+
+# Generic views
+class EmployeeView(generics.ListCreateAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+
+class EmployeeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
