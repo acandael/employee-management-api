@@ -5,6 +5,7 @@ from .serializers import EmployeeSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, mixins, generics, viewsets
+from .filters import EmployeeFilter
 
 
 # class EmployeeView(APIView):
@@ -111,3 +112,4 @@ class EmployeeViewSet(viewsets.ViewSet):
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    filterset_class = EmployeeFilter
